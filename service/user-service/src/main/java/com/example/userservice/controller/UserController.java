@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 public class UserController {
 
     private Environment env;
@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/health_check")
     public String status() {
-        return String.format("It's Working in User Service");
+        return String.format("It's Working in User Service" + "\n" + env.getProperty("test"));
     }
 
     @GetMapping("/welcome")

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order-service")
+@RequestMapping("/")
 @Slf4j
 public class OrderController {
     Environment env;
@@ -32,7 +32,8 @@ public class OrderController {
 
     @GetMapping("/health_check")
     public String status() {
-        return String.format("It's Working in Order Service on PORT "+ env.getProperty("local.server.port"));
+        return String.format("It's Working in Order Service on PORT "+ env.getProperty("local.server.port") +
+                "\n" + env.getProperty("test"));
     }
 
     @PostMapping("{userId}/orders")

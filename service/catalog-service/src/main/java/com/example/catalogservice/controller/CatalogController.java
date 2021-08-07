@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/catalog-service")
+@RequestMapping("/")
 public class CatalogController {
     Environment env;
     CatalogService catalogService;
@@ -29,7 +29,8 @@ public class CatalogController {
 
     @GetMapping("/health_check")
     public String status() {
-        return String.format("It's Working in Catalog Service on PORT " + env.getProperty("local.server.port"));
+        return String.format("It's Working in Catalog Service on PORT " + env.getProperty("local.server.port")
+        + "\n" + env.getProperty("test"));
     }
 
     @GetMapping("/catalogs")
