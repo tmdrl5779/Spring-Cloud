@@ -1,5 +1,6 @@
 package com.example.userservice.service;
 
+import com.example.userservice.client.OrderServiceClient;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
@@ -30,14 +31,18 @@ public class UserServiceImpl implements UserService{
 
     Environment env;
 
+    OrderServiceClient orderServiceClient;
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            BCryptPasswordEncoder passwordEncoder,
-                           Environment env) {
+                           Environment env,
+                           OrderServiceClient orderServiceClient) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.env = env;
+        this.orderServiceClient = orderServiceClient;
     }
 
     @Override
@@ -65,7 +70,8 @@ public class UserServiceImpl implements UserService{
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-        List<ResponseOrder> ordersList = new ArrayList<>();
+        /* Using a feign client */
+        List<ResponseOrder> ordersList = orderServiceClient.getOrders(userId);
 
         userDto.setOrders(ordersList);
 
