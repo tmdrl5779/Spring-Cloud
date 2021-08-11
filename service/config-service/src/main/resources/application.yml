@@ -18,8 +18,8 @@ spring:
           search-locations: file:///${user.home}/Desktop/GItHub/config
         git:
           uri: https://github.com/tmdrl5779/spring-cloud-config
-#          username: private일때 id
-#          password: private일때 pwd
+#          username: private id
+#          password: private pwd
 
 management:
   endpoints:
